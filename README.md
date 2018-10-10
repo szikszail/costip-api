@@ -6,9 +6,19 @@ The following codes are example to demostrate API testing, including Load testin
 
 For API testing, we are using [Postman](https://www.getpostman.com/). The portable version of it can be downloaded here: [postman-portable](https://portapps.github.io/app/postman-portable/).
 
+### Prepare
+
+1. Install Postman or Postman portable
+
 ### Tasks
 
-*TBD*
+Based on the [api-automation-webinar](https://github.com/szikszail/api-automation-webinar) create API tests in Postman for [JSON Placeholder](https://jsonplaceholder.typicode.com/).
+
+| N | Method | URL | Parameters | Expected |
+|:-:|:------:|:----|:-----------|:---------|
+| 1 | `POST` | `/posts` | Body: `{"title": "Test post", "body": "This is a nice post", "userId": 1}` | Code: 200; Response contains `id` |
+| 2 | `GET` | `/posts/{id}` | Path: `id` is the ID of the previously added post | Code: 200; Response contains `title`, `body`, `id` and `userId` or previously added post |
+| 3 | `POST` | `/posts` | Body: `{"id": {id}, "title": "Test post", "body": "This is a nice post", "userId": 1}` where `id` is the ID of the previously added post | Code: 500 |
 
 ## Load testing
 
