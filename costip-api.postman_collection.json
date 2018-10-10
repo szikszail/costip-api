@@ -1,0 +1,184 @@
+{
+	"info": {
+		"_postman_id": "f5fc60d8-70f3-4757-85b1-1ada8cbdd894",
+		"name": "costip-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "db3c9426-09ba-45c7-a98c-52d75a0b3ad7",
+						"exec": [
+							"pm.test(\"Status code should be 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);\r",
+							"});\r",
+							"pm.test(\"Response should contain ID\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).not.to.be.undefined;\r",
+							"    pm.globals.set(\"post_id\", jsonData.id);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"title\": \"Test post\", \"body\": \"This is a nice post\", \"userId\": 1}"
+				},
+				"url": {
+					"raw": "{{host}}/posts",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f9566778-066c-4b7a-964a-e556cbbadbbc",
+						"exec": [
+							"pm.test(\"Status code should be 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+							"});\r",
+							"pm.test(\"Response should contain ID\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.equal(pm.globals.get(\"post_id\"));\r",
+							"    pm.expect(jsonData.title).to.equal(\"Test post\");\r",
+							"    pm.expect(jsonData.body).to.equal(\"This is a nice post\");\r",
+							"    pm.expect(jsonData.userId).to.equal(1);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "089c39c5-b72c-4331-8466-62e269ffe7ec",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host}}/posts/{{post_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"posts",
+						"{{post_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create existing post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "db3c9426-09ba-45c7-a98c-52d75a0b3ad7",
+						"exec": [
+							"pm.test(\"Status code should be 500\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([500]);\r",
+							"});\r",
+							"pm.test(\"Response should contain error message\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Insert failed, duplicate id\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"title\": \"Test post\", \"body\": \"This is a nice post\", \"userId\": 1, \"id\": \"{{post_id}}\"}"
+				},
+				"url": {
+					"raw": "{{host}}/posts",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "d083c80e-9c05-475f-915a-1143b12c1fe8",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "742efdda-6c2f-4182-8a74-a9fd25b21808",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "6af1584d-713f-4c66-8dfa-0ae8dc5957ad",
+			"key": "host",
+			"value": "http://localhost:3456/api",
+			"type": "string"
+		}
+	]
+}

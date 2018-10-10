@@ -2,6 +2,15 @@
 
 The following codes are example to demostrate API testing, including Load testing.
 
+## Prepare
+
+1. Install [NodeJS LTS](https://nodejs.org/en/download/) or [NodeJS Portable](https://github.com/crazy-max/nodejs-portable)
+1. Download this project (either clone or by ZIP)
+1. Start example server (in the directory of the downloaded project)
+   ```bash
+   npm install
+   npm start
+   ```
 ## API testing
 
 For API testing, we are using [Postman](https://www.getpostman.com/). The portable version of it can be downloaded here: [postman-portable](https://portapps.github.io/app/postman-portable/).
@@ -26,16 +35,9 @@ For Load testing, we are using [NodeJS](https://nodejs.org/en/) and the [loadtes
 
 ### Prepare
 
-1. Install [NodeJS LTS](https://nodejs.org/en/download/) or [NodeJS Portable](https://github.com/crazy-max/nodejs-portable)
 1. Install **loadtest** package:
    ```bash
    npm install -g loadtest
-   ```
-1. Download this project (either clone or by ZIP)
-1. Start example server (in the directory of the downloaded project)
-   ```bash
-   npm install
-   npm start
    ```
 
 ### Tasks
