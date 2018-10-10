@@ -1,0 +1,22 @@
+{
+  "name": "costip-api",
+  "version": "1.0.0",
+  "description": "The following codes are example to demostrate API testing, including Load testing.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/szikszail/costip-api.git"
+  },
+  "author": "Laszlo Szikszai <sziklaszlo@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/szikszail/costip-api/issues"
+  },
+  "homepage": "https://github.com/szikszail/costip-api#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
